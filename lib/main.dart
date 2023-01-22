@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import 'features/initial/presentation/pages/initial_page.dart';
+import 'features/main/presentation/pages/main_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,15 +11,22 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'Food order',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
       ),
-      home: Container(),
+      initialRoute: InitialPage.id,
+      routes: {
+        InitialPage.id: (context) => const InitialPage(),
+        MainPage.id: (context) => const MainPage(),
+      },
     );
   }
 }
